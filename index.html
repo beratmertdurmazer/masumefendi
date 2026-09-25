@@ -34,19 +34,19 @@
     <ul class="nav-links">
       <li><a href="#vizyon" class="nav-link">Vizyon</a></li>
       <li><a href="#sutunlar" class="nav-link">4 Temel Alan</a></li>
+      <li><a href="#stratejik-cozumler" class="nav-link">7 Stratejik Çözüm</a></li>
       <li><a href="#calisma-modeli" class="nav-link">Çalışma Şekli</a></li>
       <li><a href="#hizmet-kapsami" class="nav-link">Süreç & Kapsam</a></li>
       <li><a href="#etki-simulatoru" class="nav-link">Etki Simülatörü</a></li>
     </ul>
 
     <div class="nav-actions">
-      <button class="mode-toggle-btn" id="themeToggleBtn" title="Koyu Moda Geç">
+      <button class="mode-toggle-btn" id="themeToggleBtn" title="Koyu Moda Geç" aria-label="Koyu Moda Geç">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        <span>Koyu</span>
       </button>
       <a href="#kapanis" class="nav-cta-btn">
-        <span>İletişim & İstişare</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span>İletişim</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </a>
     </div>
   </header>
@@ -121,22 +121,42 @@
             </div>
           </div>
 
-          <!-- Telefon Üstü Seçici Çubuk -->
-          <div class="phone-screen-selector-bar">
-            <button class="phone-screen-pill active" onclick="switchPhoneView('view-home')">
-              <span>📱</span> Süper-App
+          <!-- Telefon Üstü Seçici Çubuk ve Kaydırma Kontrolleri -->
+          <div class="phone-selector-wrapper">
+            <button class="selector-arrow-btn prev" id="pillScrollPrev" title="Önceki Ekranlar" aria-label="Önceki Ekranlar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
             </button>
-            <button class="phone-screen-pill" onclick="switchPhoneView('view-zekat')">
-              <span>⚖</span> Hanefi Zekât Motoru
-            </button>
-            <button class="phone-screen-pill" onclick="switchPhoneView('view-kuyu')">
-              <span>💧</span> Kuyu Takip
-            </button>
-            <button class="phone-screen-pill" onclick="switchPhoneView('view-fmtv')">
-              <span>📺</span> FMTV Medya
-            </button>
-            <button class="phone-screen-pill" onclick="switchPhoneView('view-quiz')">
-              <span>🏆</span> Siyer Yarışı
+            <div class="phone-screen-selector-bar" id="phoneSelectorBar">
+              <button class="phone-screen-pill active" onclick="switchPhoneView('view-home')">
+                <span>📱</span> Süper-App
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-kurban')">
+                <span>🥩</span> Canlı Kurban
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-talebe')">
+                <span>🎓</span> Medrese & Talebe
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-fetva')">
+                <span>🤖</span> Fıkıh Asistanı
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-kuyu')">
+                <span>💧</span> Kuyu Takip
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-zekat')">
+                <span>⚖</span> Hanefi Zekât
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-kids')">
+                <span>👶</span> FMTV Kids
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-fmtv')">
+                <span>📺</span> FM TV Medya
+              </button>
+              <button class="phone-screen-pill" onclick="switchPhoneView('view-quiz')">
+                <span>🏆</span> Siyer Ligi
+              </button>
+            </div>
+            <button class="selector-arrow-btn next" id="pillScrollNext" title="Sonraki Ekranlar" aria-label="Sonraki Ekranlar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
 
@@ -418,6 +438,176 @@
                 <div class="phone-widget" style="text-align:center; padding:0.6rem; border-color:rgba(16,185,129,0.3);">
                   <div style="font-size:0.72rem; color:#a7f3d0; font-weight:700;">+150 İyilik Puanı Kazanıldı!</div>
                   <div style="font-size:0.65rem; color:#94a3b8; margin-top:2px;">Bu puan dernek havuzundaki Afrika su kuyusuna 1 tuğla olarak eklendi.</div>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   EKRAN 6: CANLI KURBAN TAKİP & OTOMATİK VEKALET EKRANI
+                   ============================================================ -->
+              <div class="phone-content-view" id="view-kurban">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:0.9rem; font-weight:800; color:#fff;">Canlı Kurban Takip Portalı</span>
+                  <span class="phone-badge-sm" style="background:#f59e0b; color:#031413;">#KB-8821</span>
+                </div>
+
+                <div class="phone-widget" style="background:#02201b; border-color:#10b981;">
+                  <div style="font-size:0.72rem; color:#a7f3d0;">Hissedar: Hacı Ahmet Demir ve Ailesi</div>
+                  <div style="font-size:0.95rem; font-weight:900; color:#fff; margin:2px 0;">Büyükbaş 4. Hisse • Togo / 2. Bölge</div>
+                  <div style="font-size:0.68rem; color:#fcd34d;">📍 Kesimhane No: 12 • Masum Efendi Aşevi & Medresesi</div>
+                  <div style="font-size:0.65rem; color:#cbd5e1; margin-top:2px;">Et Dağıtımı: 380 Yetim ve Medrese Talebesi</div>
+                </div>
+
+                <div class="phone-widget">
+                  <div style="font-size:0.72rem; font-weight:800; color:#94a3b8; margin-bottom:0.6rem;">CANLI KESİM ÇİZELGESİ</div>
+                  <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                    <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.75rem;">
+                      <span style="color:#10b981; font-weight:900;">✓</span>
+                      <span style="color:#fff;">1. Hisse Kaydı & Niyet Onaylandı</span>
+                      <span style="font-size:0.65rem; color:#94a3b8; margin-left:auto;">09:15</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.75rem;">
+                      <span style="color:#10b981; font-weight:900;">✓</span>
+                      <span style="color:#fff;">2. Şer'i Vekalet Hoca Efendice Okundu</span>
+                      <span style="font-size:0.65rem; color:#94a3b8; margin-left:auto;">11:30</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.75rem;">
+                      <span style="color:#10b981; font-weight:900;">✓</span>
+                      <span style="color:#fff;">3. Tekbirlerle Şer'i Usulde Kesildi</span>
+                      <span style="font-size:0.65rem; color:#94a3b8; margin-left:auto;">11:42</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.75rem; background:rgba(16,185,129,0.15); padding:6px 8px; border-radius:6px;">
+                      <span style="color:#10b981; font-weight:900;">⚡</span>
+                      <span style="color:#34d399; font-weight:800;">4. Video & SMS Telefonunuza Düştü!</span>
+                      <span style="font-size:0.65rem; color:#10b981; margin-left:auto;">CANLI</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:flex; gap:0.5rem;">
+                  <button style="flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:0.5rem; border-radius:6px; font-size:0.72rem; font-weight:700;" onclick="alert('Kurban Kesim ve Dua Videosu Oynatılıyor (01:15 dk)')">
+                    ▶ İsimli Kesim Videosu
+                  </button>
+                  <button style="flex:1; background:linear-gradient(135deg, #10b981, #047857); color:#fff; border:none; padding:0.5rem; border-radius:6px; font-size:0.72rem; font-weight:800; cursor:pointer;" onclick="alert('Kurban vekalet teşekkür belgesi WhatsApp ile telefonunuza iletildi!')">
+                    📲 WhatsApp ile Al
+                  </button>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   EKRAN 7: TALEBE-HAMİ ENTEGRE MEDRESE PORTALI
+                   ============================================================ -->
+              <div class="phone-content-view" id="view-talebe">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:0.9rem; font-weight:800; color:#fff;">Medrese & Talebe Portalı</span>
+                  <span class="phone-badge-sm" style="background:#10b981; color:#031413;">FATİH MEDRESESİ</span>
+                </div>
+
+                <div class="phone-widget" style="background:#02201b; border-color:#f59e0b;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:0.7rem; color:#fcd34d; font-weight:700;">HAMİ OLDUĞUNUZ TALEBE</span>
+                    <span style="font-size:0.65rem; color:#94a3b8;">Kod: #TLB-104</span>
+                  </div>
+                  <div style="font-size:1rem; font-weight:900; color:#fff; margin:2px 0;">M. Emin Durmazer (15 Yaş)</div>
+                  <div style="font-size:0.68rem; color:#cbd5e1;">Hafızlık & Arapça İlimler Tedrisatı</div>
+                  <div style="display:flex; gap:0.5rem; margin-top:0.4rem;">
+                    <span class="phone-badge-sm" style="background:rgba(16,185,129,0.2); color:#34d399;">Aylık Burs: Ödendi ✓</span>
+                    <span class="phone-badge-sm" style="background:rgba(245,158,11,0.2); color:#fcd34d;">3. Yıl Hamiliği</span>
+                  </div>
+                </div>
+
+                <div class="phone-widget" style="display:flex; flex-direction:column; gap:0.5rem;">
+                  <div style="font-size:0.72rem; font-weight:800; color:#cbd5e1;">GÜNCEL TEDRİSAT VE GELİŞİM DURUMU</div>
+                  
+                  <div>
+                    <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:#94a3b8; margin-bottom:3px;">
+                      <span>📖 Hafızlık: 19. Cüz Ezberde</span>
+                      <span style="color:#fcd34d; font-weight:700;">%65 Tamamlandı</span>
+                    </div>
+                    <div style="height:5px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden;">
+                      <div style="width:65%; height:100%; background:linear-gradient(90deg, #f59e0b, #10b981);"></div>
+                    </div>
+                  </div>
+
+                  <div style="font-size:0.7rem; color:#e2e8f0; line-height:1.4; background:rgba(255,255,255,0.03); padding:0.45rem; border-radius:5px;">
+                    <strong style="color:#a7f3d0;">Hoca Efendinin Notu:</strong> "Talebemiz bu ay Sarf ilminde İzzi kitabını bitirip imtihanı tam puanla verdi. Gayreti pek güzeldir, dualarınızı bekler."
+                  </div>
+                </div>
+
+                <button style="width:100%; background:#f59e0b; color:#031413; font-weight:800; border:none; padding:0.5rem; border-radius:6px; font-size:0.75rem; cursor:pointer;" onclick="alert('Talebeye 250 TL başarı ve kitap harçlığı başarıyla gönderildi!')">
+                  🎁 Talebeye Harçlık & Kitap Hediyesi Gönder
+                </button>
+              </div>
+
+              <!-- ============================================================
+                   EKRAN 8: HEYET ONAYLI FIKIH & FETVA ASİSTANI
+                   ============================================================ -->
+              <div class="phone-content-view" id="view-fetva">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:0.9rem; font-weight:800; color:#fff;">Ehl-i Sünnet Fetva Asistanı</span>
+                  <span class="phone-badge-sm" style="background:#10b981; color:#031413;">HEYET ONAYLI</span>
+                </div>
+
+                <div style="position:relative; margin:0.4rem 0;">
+                  <input type="text" value="Borsadaki hisse senedinin zekâtı nasıl verilir?" style="width:100%; background:#021513; border:1px solid #10b981; color:#fff; padding:6px 10px; border-radius:8px; font-size:0.72rem; font-weight:600;" readonly>
+                  <span style="position:absolute; right:8px; top:6px; font-size:0.75rem; color:#10b981;">🔍</span>
+                </div>
+
+                <div class="phone-widget" style="background:#02201b; border-color:#10b981; padding:0.75rem;">
+                  <div style="font-size:0.68rem; color:#fcd34d; font-weight:800; margin-bottom:0.2rem;">MASUM EFENDİ FIKIH HEYETİ MÜTALAASI</div>
+                  <div style="font-size:0.72rem; color:#e2e8f0; line-height:1.5;">
+                    "Hisse senetlerinde fabrikanın bina ve demirbaşları zekâttan muaftır. Yalnızca kasadaki nakit, alacaklar ve ticari dönen mallar üzerinden %2.5 oranında zekât verilir..."
+                  </div>
+                  <div style="font-size:0.62rem; color:#94a3b8; margin-top:4px;">Kaynak: Masum Efendi Heyet Fetvası #1402 • Kuduri / el-İhtiyar</div>
+                </div>
+
+                <div class="phone-widget" style="display:flex; align-items:center; justify-content:space-between; padding:0.6rem; border-color:rgba(245,158,11,0.3);">
+                  <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <div style="width:30px; height:30px; border-radius:6px; background:#e11d48; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.65rem; font-weight:800;">FM TV</div>
+                    <div>
+                      <div style="font-size:0.72rem; font-weight:700; color:#fff;">Fıkıh Saati Programı</div>
+                      <div style="font-size:0.62rem; color:#fcd34d;">Tam bu soru: 08:42 - 12:15 dk</div>
+                    </div>
+                  </div>
+                  <button style="background:#f59e0b; border:none; color:#031413; font-size:0.65rem; font-weight:800; padding:4px 8px; border-radius:4px; cursor:pointer;" onclick="alert('FM TV video kaydı tam 08:42 dakikasından oynatılıyor...')">▶ İzle</button>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   EKRAN 9: FMTV KIDS & AHLAK DÜNYASI (ÇOCUK MODU)
+                   ============================================================ -->
+              <div class="phone-content-view" id="view-kids">
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:0.9rem; font-weight:800; color:#fff;">FMTV Kids • Çocuk Sığınağı</span>
+                  <span class="phone-badge-sm" style="background:#e11d48; color:#fff;">🔒 PIN KORUMALI</span>
+                </div>
+
+                <div class="phone-widget" style="background:linear-gradient(135deg, rgba(225,29,72,0.2), rgba(6,78,59,0.3)); border-color:rgba(225,29,72,0.4); padding:0.75rem;">
+                  <div style="font-size:0.68rem; color:#fcd34d; font-weight:800;">AHLAK KORUMA KALKANI AKTİF</div>
+                  <div style="font-size:0.82rem; font-weight:800; color:#fff; margin:2px 0;">Zararsız, Reklamsız Ehl-i Sünnet Çocuk Dünyası</div>
+                  <div style="font-size:0.65rem; color:#cbd5e1;">Dış internete kapalı, pedagojik ve güvenli içerik.</div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+                  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:0.6rem; border-radius:8px; text-align:center; cursor:pointer;" onclick="alert('Sesli Elifba ve Mahreç Dersi Açılıyor...')">
+                    <div style="font-size:1.2rem;">📖</div>
+                    <div style="font-size:0.72rem; font-weight:800; color:#fff; margin-top:2px;">Sesli Elifba</div>
+                    <div style="font-size:0.6rem; color:#34d399;">Tecvidli Harfler</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:0.6rem; border-radius:8px; text-align:center; cursor:pointer;" onclick="alert('Peygamberler Tarihi Çizgi Filmi Başlıyor...')">
+                    <div style="font-size:1.2rem;">🌟</div>
+                    <div style="font-size:0.72rem; font-weight:800; color:#fff; margin-top:2px;">Peygamber Kıssaları</div>
+                    <div style="font-size:0.6rem; color:#fcd34d;">Çizgi Animasyon</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:0.6rem; border-radius:8px; text-align:center; cursor:pointer;" onclick="alert('Çocuklar İçin Namaz Rehberi...')">
+                    <div style="font-size:1.2rem;">🕌</div>
+                    <div style="font-size:0.72rem; font-weight:800; color:#fff; margin-top:2px;">Namaz Hocası</div>
+                    <div style="font-size:0.6rem; color:#60a5fa;">Adım Adım Abdest</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:0.6rem; border-radius:8px; text-align:center; cursor:pointer;" onclick="alert('Ahlak ve Siyer Çarkı Başlıyor...')">
+                    <div style="font-size:1.2rem;">🎯</div>
+                    <div style="font-size:0.72rem; font-weight:800; color:#fff; margin-top:2px;">Ahlak Bulmacası</div>
+                    <div style="font-size:0.6rem; color:#a7f3d0;">Ödüllü Puanlar</div>
+                  </div>
                 </div>
               </div>
 
@@ -744,7 +934,227 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 3: ÇALIŞMA ŞEKLİ (UZAKTAN ÇALIŞMA + HAFTALIK YÜZ YÜZE İSTİŞARE)
+       SECTION: "BU ADAM MUTLAKA BİZLE OLMALI" DEDİRTECEK 7 STRATEJİK ÇÖZÜM
+       ========================================================================== -->
+  <section id="stratejik-cozumler" style="border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      
+      <div class="section-header-block">
+        <div class="section-tag emerald">STRATEJİK KATMA DEĞER & YÜKSEK MİMARİ</div>
+        <h2 class="section-title">
+          "Bu Adam Mutlaka Bizle Olmalı" Dedirtecek <br>
+          <span class="gold-gradient-text">7 Stratejik Dijital Çözüm</span>
+        </h2>
+        <p class="section-desc" style="margin:0 auto;">
+          Klasik ajansların fıkhi hassasiyetleri bilmediği ve sahadaki dertlerden uzak kaldığı yerde; doğrudan Masum Efendi kurumlarının geleceğini emniyete alacak, infakı ve medrese hizmetini katlayacak 7 kritik teknolojik hamle:
+        </p>
+      </div>
+
+      <div class="strategic-grid">
+        
+        <!-- Çözüm 1: Kurban Takip -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">01 🥩 KURBAN DÖNEMİ</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">EN YÜKSEK GELİR ANI</span>
+            </div>
+            <h3 class="strategic-card-title">Canlı Kurban Takip & Otomatik Vekalet Portalı</h3>
+            <div class="strategic-card-subtitle">Bayram Günlerindeki Çağrı Merkezi Krizini Sıfırlayan Güven Altyapısı</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Bayram günlerinde yüz binlerce hissedar "Vekaletim okundu mu? Kurbanım kesildi mi?" diye telefonları kilitler; personel manuel video yetiştiremez, gecikmeler güven sarsar.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> Bağışçıya özel canlı sıra takip ekranı (<code>Sıra Alındı -> Kesimhane Sırası -> Şer'i Vekalet Okundu -> Kesildi & Dağıtıldı</code>). Kesildiği saniye isimli video ve teşekkür belgesi otomatik SMS/WhatsApp ile düşer.
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Çağrı merkezi iş yükünü %90 azaltır; şeffaflık hissi sayesinde her yıl kurban hisse sayısını en az %40 artırır.
+              </div>
+            </div>
+          </div>
+          <button class="strat-btn-view-phone" onclick="goToPhoneView('view-kurban')">
+            <span>📱 Telefonda Canlı Kurban Simülatörünü Aç</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Çözüm 2: Medrese ERP & Talebe-Hami -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">02 🎓 MEDRESE & TALEBE</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">İÇ OPERASYON OMURGASI</span>
+            </div>
+            <h3 class="strategic-card-title">Talebe-Hami Entegre Medrese & Hafızlık ERP'si</h3>
+            <div class="strategic-card-subtitle">Medreselerdeki Tedrisatı Düzenli Hamiliğe Bağlayan Dijital Sistem</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Yüzlerce talebenin hafızlık sayfası, sarf-nahiv kitap seviyesi ve iaşe masrafları defterlerde veya dağınık Excel'lerde kalır; hami olan bağışçı kime hamilik yaptığını tam hissedemez.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> Medrese hocalarının günde 1 dakikada yoklama ve ders geçtiği hafif mobil panel. Mahremiyet gözetilerek hamiye her ay manevi karne bildirimi (<em>"Hamisi olduğunuz hafızlık talebeniz 19. cüze geçti"</em>).
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Hamilik abonelik iptallerini sıfıra indirir; talebe masraflarının her ay düzenli ve aksamadan toplanmasını garanti eder.
+              </div>
+            </div>
+          </div>
+          <button class="strat-btn-view-phone" onclick="goToPhoneView('view-talebe')">
+            <span>📱 Telefonda Medrese Portalını Aç</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Çözüm 3: Heyet Onaylı Fıkıh Asistanı -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">03 🤖 İLMİ MİRAS & ARŞİV</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">FM TV VİDEO DİZİNİ</span>
+            </div>
+            <h3 class="strategic-card-title">Heyet Onaylı Ehl-i Sünnet Akıllı Fetva Motoru</h3>
+            <div class="strategic-card-subtitle">FM TV Arşivini ve Hoca Heyetinin İlmini Dakikası Dakikasına Arayan Sistem</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> İnsanlar sürekli aynı fıkıh ve ilmihal sorularını hocalara veya çağrı merkezine sorar; FM TV'nin binlerce saatlik kıymetli video arşivi YouTube algoritmalarında kaybolur.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> İnternetteki belirsiz kaynaklardan değil; yalnızca Masum Efendi hoca heyetinin fetva mütalaalarından ve ders kayıtlarından beslenen akıllı arama. Soru sorulduğunda videonun tam ilgili dakikasını ve metnini önüne çıkarır.
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Hocaların üzerindeki telefon yükünü %80 hafifletir; cemaati Ehl-i Sünnet çizgisinde tek yetkili dijital müracaat merci haline getirir.
+              </div>
+            </div>
+          </div>
+          <button class="strat-btn-view-phone" onclick="goToPhoneView('view-fetva')">
+            <span>📱 Telefonda Fetva Asistanını Aç</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Çözüm 4: Avrupa & Gurbetçi İnfak Koridoru -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">04 💶 GURBETÇİ & AVRUPA</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">DÖVİZ FON KAYNAĞI</span>
+            </div>
+            <h3 class="strategic-card-title">Avrupa & Gurbetçi İnfak Koridoru (Euro Fon Motoru)</h3>
+            <div class="strategic-card-subtitle">Almanya, Hollanda, Fransa ve Avusturya'dan Kesintisiz Döviz Akışı</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Avrupa'daki gurbetçiler Türk Sanal POS'larında sık sık provizyon reddi yaşar; kredi kartı yerine kendi yerel bankacılık araçlarını tercih ederler.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> SEPA Direct Debit (Aylık otomatik banka talimatı), Sofort/Klarna (Almanya) ve iDEAL (Hollanda) yerel ödeme entegrasyonu. Tek onayla her ay 50€-100€ doğrudan vakıf hesabına yatar.
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Türkiye'deki enflasyon ve kur dalgalanmalarına karşı medreselerin iaşe ve inşa masraflarını karşılayacak güçlü ve düzenli bir Euro döviz geliri oluşturur.
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); padding:0.6rem 0.8rem; border-radius:6px; font-size:0.75rem; color:var(--text-gold); font-weight:700; display:flex; align-items:center; gap:0.5rem; margin-top:auto;">
+            <span>💶</span>
+            <span>SEPA Direct Debit • Sofort • iDEAL • Otomatik Aylık Euro Havale</span>
+          </div>
+        </div>
+
+        <!-- Çözüm 5: FMTV Kids & Ahlak Kalkanı -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">05 👶 GELECEK NESİL</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">AİLELER İÇİN GÜVENLİK</span>
+            </div>
+            <h3 class="strategic-card-title">FMTV Kids & Ahlak Koruma Kalkanı (Çocuk Modu)</h3>
+            <div class="strategic-card-subtitle">Evlatları Dijital Ahlaksızlıktan Koruyan, PIN Korumalı Güvenli Ehl-i Sünnet Dünyası</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Aileler çocuklarının YouTube ve TikTok'ta zararlı ve sapkın algoritmalara maruz kalmasından ötürü büyük endişe ve vicdan azabı içindedir.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> Uygulama içine ebeveyn PIN korumalı çocuk sığınağı: Reklamsız sesli elifba, çizgi animasyonlu peygamber kıssaları, çocuk namaz hocası ve seviyeli siyer bulmacaları.
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Annelerin ve babaların bu uygulamayı telefonundan asla silmemesini sağlar; cemaatin şefkatli vizyonu yeni neslin kalbine işlenir.
+              </div>
+            </div>
+          </div>
+          <button class="strat-btn-view-phone" onclick="goToPhoneView('view-kids')">
+            <span>📱 Telefonda Çocuk Modunu Aç</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Çözüm 6: Cemaat Veri Egemenliği & Bağımsız KVKK Zırhı -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">06 🛡 KURUMSAL MAHREMİYET</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">BAĞIMSIZ VERİ MİMARİSİ</span>
+            </div>
+            <h3 class="strategic-card-title">Cemaat Veri Egemenliği & Bağımsız Güvenlik Zırhı</h3>
+            <div class="strategic-card-subtitle">Yabancı Bulutlara ve Ajanslara Asla Emanet Edilmeyen Yerel ve Korumalı Veritabanı</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Ajanslar veritabanlarını kendi sunucularında rehin tutar; bağışçı listeleri ve hoca kayıtlarının sızma veya üçüncü taraflarca erişilme riski vardır.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> Uçtan uca şifrelenmiş (End-to-End Encryption), yedekleri sadece vakfın belirlediği şifreli yerel donanımlarda tutulan, tam KVKK uyumlu bağımsız veri mimarisi.
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> "Veriniz cemaatin mahremidir, anahtarı sadece sizdedir" ilkesiyle karar vericilere %100 kurumsal huzur ve tam veri mülkiyeti sağlar.
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25); padding:0.6rem 0.8rem; border-radius:6px; font-size:0.75rem; color:#34d399; font-weight:700; display:flex; align-items:center; gap:0.5rem; margin-top:auto;">
+            <span>🛡</span>
+            <span>Uçtan Uca Şifreli Veritabanı • Bağımsız Yerel Yedek • Sıfır Ajans Bağımlılığı</span>
+          </div>
+        </div>
+
+        <!-- Çözüm 7: "Talebe Yararına" Neşriyat & E-Ticaret -->
+        <div class="strategic-card">
+          <div>
+            <div class="strategic-card-header">
+              <span class="strategic-num-badge">07 📚 SÜREKLİ İKTİSADİ KAYNAK</span>
+              <span class="section-tag emerald" style="margin:0; font-size:0.68rem;">İLİM NEŞRİYATI</span>
+            </div>
+            <h3 class="strategic-card-title">"Talebe Yararına" İlim Neşriyatı & İktisadi Pazar Yeri</h3>
+            <div class="strategic-card-subtitle">Kitap, Risale ve Medrese Yayınlarını Tek Tıkla Bağışa Dönüştüren İlim Portalı</div>
+            
+            <div class="strategic-points">
+              <div class="strat-point-item strat-point-problem">
+                <strong style="color:#f43f5e;">✕ Mevcut Kriz:</strong> Cemaat neşriyatı (Ruhu'l-Furkan, dua kitapları, risaleler) harici ve yavaş e-ticaret sitelerinde satılır; alışveriş ile hayır arasındaki bağ kopuktur.
+              </div>
+              <div class="strat-point-item strat-point-solution">
+                <strong style="color:#10b981;">✓ Mimari Çözüm:</strong> Mobil uygulama içine entegre tek tıkla sipariş. Sepetteki her ürünün altında şeffaf infak karşılığı: <em>"Bu eseri aldığınızda bir talebenin 2 günlük sıcak yemeği karşılanmaktadır."</em>
+              </div>
+              <div class="strat-point-item strat-point-roi">
+                <strong style="color:var(--text-gold);">★ Kuruma Değeri:</strong> Doğrudan bağış yapmayan kitlelerin bile ilim alışverişi yoluyla medreselere sürekli ve yüksek kâr marjlı kaynak aktarmasını sağlar.
+              </div>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); padding:0.6rem 0.8rem; border-radius:6px; font-size:0.75rem; color:var(--text-gold); font-weight:700; display:flex; align-items:center; gap:0.5rem; margin-top:auto;">
+            <span>📖</span>
+            <span>Tek Tıkla Sipariş • Hızlı Kargo • Kârın %100'ü Medrese Aşevine İntikal</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: ÇALIŞMA ŞEKLİ (UZAKTAN ÇALIŞMA + HAFTALIK YÜZ YÜZE İSTİŞARE)
        ========================================================================== -->
   <section id="calisma-modeli" style="border-top: 1px solid var(--border-subtle);">
     <div class="container">
@@ -838,7 +1248,7 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 4: SÜREÇ, KAPSAM VE SÜREKLİ HİZMET DÖNGÜSÜ
+       SECTION 5: SÜREÇ, KAPSAM VE SÜREKLİ HİZMET DÖNGÜSÜ
        ========================================================================== -->
   <section id="hizmet-kapsami" style="border-top: 1px solid var(--border-subtle);">
     <div class="container">
@@ -902,7 +1312,7 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 5: İNTERAKTİF ETKİ SİMÜLATÖRÜ
+       SECTION 6: İNTERAKTİF ETKİ SİMÜLATÖRÜ
        ========================================================================== -->
   <section id="etki-simulatoru" style="border-top: 1px solid var(--border-subtle);">
     <div class="container">
@@ -991,7 +1401,7 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 6: VURUCU KAPANIŞ VE MANİFESTO (İÇTEN VE TEVAZU SAHİBİ)
+       SECTION 7: VURUCU KAPANIŞ VE MANİFESTO (İÇTEN VE TEVAZU SAHİBİ)
        ========================================================================== -->
   <section id="kapanis">
     <div class="container">
@@ -1029,7 +1439,7 @@
     <button class="deck-btn" id="deckPrevBtn" title="Önceki Bölüm (Sol Ok)">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
     </button>
-    <div class="deck-info" id="deckSlideInfo">Bölüm 1 / 7</div>
+    <div class="deck-info" id="deckSlideInfo">Bölüm 1 / 8</div>
     <button class="deck-btn" id="deckNextBtn" title="Sonraki Bölüm (Sağ Ok veya Boşluk)">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
     </button>

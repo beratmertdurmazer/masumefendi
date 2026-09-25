@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPhoneSimulator() {
   const pills = document.querySelectorAll('.phone-screen-pill');
   const views = document.querySelectorAll('.phone-content-view');
+  const selectorBar = document.getElementById('phoneSelectorBar') || document.querySelector('.phone-screen-selector-bar');
+  const prevBtn = document.getElementById('pillScrollPrev');
+  const nextBtn = document.getElementById('pillScrollNext');
 
   window.switchPhoneView = function(viewId) {
     views.forEach(view => {
@@ -31,11 +34,110 @@ function initPhoneSimulator() {
       const onclickAttr = pill.getAttribute('onclick') || '';
       if (onclickAttr.includes(viewId)) {
         pill.classList.add('active');
+        // Aktif butonu görünür alana ortala
+        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       } else {
         pill.classList.remove('active');
       }
     });
+
+    updateArrowState();
   };
+
+  if (selectorBar) {
+    // 1. Masaüstünde Mouse Tekerleği ile Yatay Kaydırma (Horizontal Wheel Scrolling)
+    selectorBar.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        selectorBar.scrollLeft += e.deltaY * 0.9;
+        updateArrowState();
+      }
+    }, { passive: false });
+
+    // 2. Masaüstünde Mouse ile Tutup Sürükleme (Drag to Scroll)
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let dragThresholdPassed = false;
+
+    selectorBar.addEventListener('mousedown', (e) => {
+      isDown = true;
+      dragThresholdPassed = false;
+      selectorBar.classList.add('grabbing');
+      startX = e.pageX - selectorBar.offsetLeft;
+      scrollStart = selectorBar.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDown) {
+        isDown = false;
+        selectorBar.classList.remove('grabbing');
+      }
+    });
+
+    selectorBar.addEventListener('mouseleave', () => {
+      if (isDown) {
+        isDown = false;
+        selectorBar.classList.remove('grabbing');
+      }
+    });
+
+    selectorBar.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const x = e.pageX - selectorBar.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      if (Math.abs(walk) > 5) {
+        dragThresholdPassed = true;
+      }
+      selectorBar.scrollLeft = scrollStart - walk;
+      updateArrowState();
+    });
+
+    // Sürükleme sırasında butona yanlışlıkla tıklanmasını engelle
+    pills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        if (dragThresholdPassed) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      }, true);
+    });
+
+    // 3. Sağ / Sol Ok Butonları ile Kaydırma (Click Arrows)
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        selectorBar.scrollBy({ left: -240, behavior: 'smooth' });
+        setTimeout(updateArrowState, 350);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        selectorBar.scrollBy({ left: 240, behavior: 'smooth' });
+        setTimeout(updateArrowState, 350);
+      });
+    }
+
+    function updateArrowState() {
+      if (!prevBtn || !nextBtn) return;
+      const maxScroll = selectorBar.scrollWidth - selectorBar.clientWidth;
+      if (maxScroll <= 2) {
+        prevBtn.style.opacity = '0.25';
+        prevBtn.disabled = true;
+        nextBtn.style.opacity = '0.25';
+        nextBtn.disabled = true;
+      } else {
+        prevBtn.style.opacity = selectorBar.scrollLeft <= 5 ? '0.25' : '1';
+        prevBtn.disabled = selectorBar.scrollLeft <= 5;
+        nextBtn.style.opacity = selectorBar.scrollLeft >= maxScroll - 5 ? '0.25' : '1';
+        nextBtn.disabled = selectorBar.scrollLeft >= maxScroll - 5;
+      }
+    }
+
+    selectorBar.addEventListener('scroll', updateArrowState, { passive: true });
+    window.addEventListener('resize', updateArrowState, { passive: true });
+    setTimeout(updateArrowState, 150);
+  }
 }
 
 /* ==========================================================================
@@ -64,6 +166,7 @@ const SECTIONS = [
   'hero',
   'vizyon',
   'sutunlar',
+  'stratejik-cozumler',
   'calisma-modeli',
   'hizmet-kapsami',
   'etki-simulatoru',
@@ -83,6 +186,15 @@ function scrollToSection(targetId) {
     behavior: 'smooth'
   });
 }
+
+window.goToPhoneView = function(viewId) {
+  scrollToSection('hero');
+  setTimeout(() => {
+    if (window.switchPhoneView) {
+      window.switchPhoneView(viewId);
+    }
+  }, 450);
+};
 
 function initPresentationDeck() {
   const prevBtn = document.getElementById('deckPrevBtn');
@@ -235,9 +347,10 @@ function initThemeToggle() {
 
   function updateBtnUI(isLight) {
     toggleBtn.innerHTML = isLight
-      ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> <span>Koyu</span>`
-      : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> <span>Aydınlık</span>`;
+      ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`
+      : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
     toggleBtn.title = isLight ? "Koyu Moda Geç" : "Aydınlık Moda Geç";
+    toggleBtn.setAttribute('aria-label', toggleBtn.title);
   }
 
   // Varsayılan açılış modu: Aydınlık Mod
